@@ -1,7 +1,7 @@
 {
   "bosh": {
-    "url": "https://s3.amazonaws.com/bosh-compiled-release-tarballs/bosh-267.5.0-ubuntu-trusty-3586.26-20180822-001037-977484576-20180822001041.tgz?versionId=7.Is7sUkAU17rIy5lJ3cM6wvPJF7y1K9",
-    "sha1": "55711b9877a2c8af3739267e4381d63e8861999e",
+    "url": "https://s3.amazonaws.com/bosh-compiled-release-tarballs/bosh-267.5.0-ubuntu-xenial-97.12-20180820-234355-048784588-20180820234358.tgz?versionId=X168wrj6izNJTi0V0bSPNpeKl_kZeahW",
+    "sha1": "37499312e1186237434ee7a2492812b084c4e345",
     "version": "267.5.0"
   },
   "bosh-cli": {
@@ -10,9 +10,9 @@
     "linux": "https://s3.amazonaws.com/bosh-cli-artifacts/bosh-cli-5.0.1-linux-amd64"
   },
   "bpm": {
-    "url": "https://s3.amazonaws.com/bosh-compiled-release-tarballs/bpm-0.9.0-ubuntu-trusty-3586.26-20180725-183738-797989964-20180725183745.tgz?versionId=SZ82i5RS89h3BvuA68Gg2cYylTnwJIYI",
-    "sha1": "2ddb3e63a34a6eb201551d058120aec0767c267e",
-    "version": "0.9.0"
+    "url": "https://s3.amazonaws.com/bosh-compiled-release-tarballs/bpm-0.11.0-ubuntu-xenial-97.12-20180820-235033-474094256-20180820235039.tgz?versionId=hzs0XSVxZzPFsTPDY3c3trwPf0OtugqB",
+    "sha1": "6008b48192ac38ce6ac6ff23ea5029ac2b5bc2b9",
+    "version": "0.11.0"
   },
   "cpi": {
     "url": "https://bosh.io/d/github.com/cloudfoundry-incubator/bosh-aws-cpi-release?v=72",
@@ -25,8 +25,8 @@
     "linux": "https://github.com/concourse/concourse/releases/download/v4.0.0/fly_linux_amd64"
   },
   "stemcell": {
-    "url": "https://bosh.io/d/stemcells/bosh-aws-xen-hvm-ubuntu-trusty-go_agent?v=3586.24",
-    "sha1": "dced51326eaa156cf634ff795631e4358d795385",
+    "url": "https://bosh.io/d/stemcells/bosh-aws-xen-hvm-ubuntu-xenial-go_agent?v=97.12",
+    "sha1": "41014fc439770a6f403dfaf6963a03400d47149d",
     "version": ""
   },
   "terraform": {
