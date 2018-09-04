@@ -10,7 +10,7 @@
     "value": {
       "name": "concourse",
       "version": "4.1.0",
-      "url": "https://s3-eu-west-1.amazonaws.com/concourse-up-compiled-releases-new/concourse-4.1.0-ubuntu-xenial-97.15.tgz",
+      "url": "https://s3-eu-west-1.amazonaws.com/concourse-up-compiled-releases-new/concourse-4.1.0-ubuntu-xenial-97.15-20180904-150654-550925431.tgz",
       "stemcell": {
         "os": "ubuntu-xenial",
         "version": "97.15"
@@ -23,7 +23,7 @@
     "value": {
       "name": "garden-runc",
       "version": "1.16.3",
-      "url": "https://s3-eu-west-1.amazonaws.com/concourse-up-compiled-releases-new/garden-runc-1.16.3-ubuntu-xenial-97.15.tgz",
+      "url": "https://s3-eu-west-1.amazonaws.com/concourse-up-compiled-releases-new/garden-runc-1.16.3-ubuntu-xenial-97.15-20180904-150740-250967193.tgz",
       "stemcell": {
         "os": "ubuntu-xenial",
         "version": "97.15"
@@ -36,7 +36,7 @@
     "value": {
       "name": "riemann",
       "version": "5",
-      "url": "https://s3-eu-west-1.amazonaws.com/concourse-up-compiled-releases-new/riemann-5-ubuntu-xenial-97.15.tgz",
+      "url": "https://s3-eu-west-1.amazonaws.com/concourse-up-compiled-releases-new/riemann-5-ubuntu-xenial-97.15-20180904-150810-510695106.tgz",
       "stemcell": {
         "os": "ubuntu-xenial",
         "version": "97.15"
@@ -49,7 +49,7 @@
     "value": {
       "name": "grafana",
       "version": "13.2.0",
-      "url": "https://s3-eu-west-1.amazonaws.com/concourse-up-compiled-releases-new/grafana-13.2.0-ubuntu-xenial-97.15.tgz",
+      "url": "https://s3-eu-west-1.amazonaws.com/concourse-up-compiled-releases-new/grafana-13.2.0-ubuntu-xenial-97.15-20180904-150828-583583313.tgz",
       "stemcell": {
         "os": "ubuntu-xenial",
         "version": "97.15"
@@ -62,7 +62,7 @@
     "value": {
       "name": "influxdb",
       "version": "4",
-      "url": "https://s3-eu-west-1.amazonaws.com/concourse-up-compiled-releases-new/influxdb-4-ubuntu-xenial-97.15.tgz",
+      "url": "https://s3-eu-west-1.amazonaws.com/concourse-up-compiled-releases-new/influxdb-4-ubuntu-xenial-97.15-20180904-150840-235120586.tgz",
       "stemcell": {
         "os": "ubuntu-xenial",
         "version": "97.15"
@@ -75,7 +75,7 @@
     "value": {
       "name": "credhub",
       "version": "2.0.2",
-      "url": "https://s3-eu-west-1.amazonaws.com/concourse-up-compiled-releases-new/credhub-2.0.2-ubuntu-xenial-97.15.tgz",
+      "url": "https://s3-eu-west-1.amazonaws.com/concourse-up-compiled-releases-new/credhub-2.0.2-ubuntu-xenial-97.15-20180904-150903-879670522.tgz",
       "stemcell": {
         "os": "ubuntu-xenial",
         "version": "97.15"
@@ -88,7 +88,7 @@
     "value": {
       "name": "uaa",
       "version": "60.2",
-      "url": "https://s3-eu-west-1.amazonaws.com/concourse-up-compiled-releases-new/uaa-60.2-ubuntu-xenial-97.15.tgz",
+      "url": "https://s3-eu-west-1.amazonaws.com/concourse-up-compiled-releases-new/uaa-60.2-ubuntu-xenial-97.15-20180904-150941-826774108.tgz",
       "stemcell": {
         "os": "ubuntu-xenial",
         "version": "97.15"
