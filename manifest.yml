@@ -110,7 +110,7 @@ instance_groups:
         url: https://((domain)):8844
       external_url: https://((domain))
       influxdb:
-        database: default
+        database: riemann
         password: ((influxdb_password))
         url: http://localhost:8086
         username: admin
