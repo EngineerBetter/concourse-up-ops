@@ -82,6 +82,10 @@ resource "google_compute_address" "atc_ip" {
   name = "atc-ip"
 }
 
+resource "google_compute_address" "director" {
+  name = "director"
+}
+
 output "private_subnet_id" {
     value = "${google_compute_subnetwork.private.name}"
 }
@@ -107,7 +111,7 @@ output "director_key_pair" {
 }
 
 output "director_public_ip" {
-  value = ""
+  value = "${google_compute_address.director.address}"
 }
 
 output "atc_public_ip" {
