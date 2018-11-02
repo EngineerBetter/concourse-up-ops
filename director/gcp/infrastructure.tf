@@ -1,7 +1,6 @@
 provider "google" {
-    credentials = "${file("/Users/eb/workspace/irbe-test/gcp-creds.json")}"
-    project = "concourse-up"
-    region = "us-east1"
+  project = "concourse-up"
+  region = "us-east1"
 }
 
 // route for nat
@@ -104,7 +103,7 @@ output "source_access_ip" {
 }
 
 output "director_key_pair" {
-  value = ""
+  value = "${base64decode(google_service_account_key.bosh.private_key)}"
 }
 
 output "director_public_ip" {
