@@ -92,13 +92,13 @@ resource "google_compute_network" "bosh" {
 }
 
 resource "google_compute_subnetwork" "public" {
-  name          = "${var.deployment}-bosh-us-east1-subnet-public"
+  name          = "${var.deployment}-bosh-${var.region}-subnet-public"
   ip_cidr_range = "10.0.0.0/24"
   network       = "${google_compute_network.bosh.self_link}"
   project       = "${var.project}"
 }
 resource "google_compute_subnetwork" "private" {
-  name          = "${var.deployment}-bosh-us-east1-subnet-private"
+  name          = "${var.deployment}-bosh-${var.region}-subnet-private"
   ip_cidr_range = "10.0.1.0/24"
   network       = "${google_compute_network.bosh.self_link}"
   project       = "${var.project}"
@@ -126,26 +126,35 @@ resource "google_compute_address" "director" {
 }
 
 output "network" {
-value = ""
+value = "${google_compute_network.bosh.name}"
 }
 
-output "subnetwork" {
-value = ""
+output "private_subnetwork_name" {
+value = "${google_compute_subnetwork.private.name}"
+}
+output "public_subnetwork_name" {
+value = "${google_compute_subnetwork.public.name}"
 }
 
-output "internal_cidr" {
-value = ""
+output "public_subnetwork_cidr" {
+value = "${google_compute_subnetwork.public.ip_cidr_range}"
+}
+output "private_subnetwork_cidr" {
+value = "${google_compute_subnetwork.private.ip_cidr_range}"
 }
 
-output "internal_gw" {
-value = ""
+output "private_subnetwor_internal_gw" {
+value = "${google_compute_subnetwork.private.gateway_address}"
+}
+output "public_subnetwor_internal_gw" {
+value = "${google_compute_subnetwork.public.gateway_address}"
 }
 
-output "external_ip" {
-value = ""
+output "atc_public_ip" {
+value = "${google_compute_address.atc_ip.address}"
 }
 
-output "director_key_pair" {
+output "director_account_creds" {
   value = "${base64decode(google_service_account_key.bosh.private_key)}"
 }
 
