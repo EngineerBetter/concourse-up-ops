@@ -28,6 +28,24 @@ variable "region" {
 	default = "<% .Region %>"
 }
 
+variable "db_tier" {
+  type = "string"
+	default = "<% .DBTier %>"
+}
+variable "db_name" {
+  type = "string"
+	default = "<% .DBName %>"
+}
+
+variable "db_username" {
+  type = "string"
+	default = "<% .DBUsername %>"
+}
+variable "db_password" {
+  type = "string"
+	default = "<% .DBPassword %>"
+}
+
 provider "google" {
     credentials = "<% .GCPCredentialsJSON %>"
     project = "<% .Project %>"
@@ -125,6 +143,27 @@ resource "google_compute_address" "director" {
   name = "${var.deployment}-director-ip"
 }
 
+resource "google_sql_database_instance" "director" {
+  name = "${var.db_name}"
+  database_version = "POSTGRES_9_6"
+  region       = "${var.region}"
+
+  settings {
+    tier = "${var.db_tier}"
+  }
+}
+
+resource "google_sql_database" "director" {
+  name      = "udb"
+  instance  = "${google_sql_database_instance.director.name}"
+}
+
+resource "google_sql_user" "director" {
+  name     = "${var.db_username}"
+  instance = "${google_sql_database_instance.director.name}"
+  host     = "*"
+  password = "${var.db_password}"
+}
 output "network" {
 value = "${google_compute_network.bosh.name}"
 }
@@ -160,4 +199,15 @@ output "director_account_creds" {
 
 output "director_public_ip" {
   value = "${google_compute_address.director.address}"
+}
+output "db_address_self_link" {
+  value = "${google_sql_database_instance.director.self_link}"
+}
+
+output "db_first_address" {
+  value = "${google_sql_database_instance.director.first_ip_address}"
+}
+
+output "db_address_ip" {
+  value = "${google_sql_database_instance.director.ip_address.0.ip_address}"
 }
