@@ -11,8 +11,8 @@
   },
   {
     "type": "replace",
-    "path": "/releases/name=riemann/sha1?",
-    "value": "c01c0f11541683b5d4616f582871bccafc4c394a"
+    "path": "/releases/name=telegraf/sha1?",
+    "value": "ce397600226ce9758efedf55749602e7e74b11fa"
   },
   {
     "type": "replace",

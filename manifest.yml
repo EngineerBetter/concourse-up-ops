@@ -60,7 +60,7 @@ releases:
   version: latest
 - name: garden-runc
   version: latest
-- name: riemann
+- name: telegraf
   version: latest
 - name: grafana
   version: latest
@@ -110,7 +110,7 @@ instance_groups:
         url: https://((domain)):8844
       external_url: https://((domain))
       influxdb:
-        database: riemann
+        database: telegraf
         password: ((influxdb_password))
         url: http://localhost:8086
         username: admin
@@ -140,25 +140,18 @@ instance_groups:
     release: influxdb
     properties:
       influxdb:
-        database: riemann
+        database: telegraf
         password: ((influxdb_password))
         user: admin
-  - name: riemann
-    release: riemann
+  - name: telegraf
+    release: telegraf
     properties:
-      riemann:
-        influxdb:
-          database: riemann
-          host: 127.0.0.1
-          password: ((influxdb_password))
-          port: 8086
-          username: admin
-  - name: riemann-emitter
-    release: riemann
-    properties:
-      riemann_emitter:
-        host: 127.0.0.1
-        port: 5555
+      influxdb:
+        database: telegraf
+        url: http://127.0.0.1
+        password: ((influxdb_password))
+        port: 8086
+        username: admin
   - name: grafana
     release: grafana
     properties:
@@ -169,7 +162,7 @@ instance_groups:
         - name: Concourse
           content: ((grafana_dashboard))
         datasource:
-          database_name: riemann
+          database_name: telegraf
           database_type: influxdb
           name: influxdb
           password: ((influxdb_password))
