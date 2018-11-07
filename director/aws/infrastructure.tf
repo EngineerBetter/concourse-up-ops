@@ -556,6 +556,7 @@ resource "aws_db_instance" "default" {
   db_subnet_group_name   = "${aws_db_subnet_group.default.name}"
   skip_final_snapshot    = true
   storage_type           = "gp2"
+  storage_encrypted      = true
   lifecycle {
     ignore_changes = ["allocated_storage"]
   }
