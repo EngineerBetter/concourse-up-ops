@@ -32,10 +32,6 @@ variable "db_tier" {
   type = "string"
 	default = "<% .DBTier %>"
 }
-variable "db_name" {
-  type = "string"
-	default = "<% .DBName %>"
-}
 
 variable "db_username" {
   type = "string"
@@ -121,6 +117,47 @@ resource "google_compute_subnetwork" "private" {
   network       = "${google_compute_network.bosh.self_link}"
   project       = "${var.project}"
 }
+
+resource "google_compute_firewall" "internal" {
+  name        = "${var.deployment}-int"
+  description = "BOSH CI Internal Traffic"
+  network     = "${google_compute_network.bosh.self_link}"
+  source_tags = ["internal"]
+  target_tags = ["internal"]
+
+  allow {
+    protocol = "tcp"
+  }
+
+  allow {
+    protocol = "udp"
+  }
+
+  allow {
+    protocol = "icmp"
+  }
+}
+
+resource "google_compute_firewall" "external" {
+  name        = "${var.deployment}-ext"
+  description = "BOSH CI External Traffic"
+  network     = "${google_compute_network.bosh.self_link}"
+  target_tags = ["external"]
+
+  allow {
+    protocol = "tcp"
+    ports    = ["22", "443", "4222", "6868", "25250", "25555", "25777"]
+  }
+
+  allow {
+    protocol = "udp"
+    ports    = ["53"]
+  }
+
+  allow {
+    protocol = "icmp"
+  }
+}
 resource "google_service_account" "bosh" {
   account_id   = "${var.deployment}-boshaccount"
   display_name = "bosh"
@@ -144,7 +181,6 @@ resource "google_compute_address" "director" {
 }
 
 resource "google_sql_database_instance" "director" {
-  name = "${var.db_name}"
   database_version = "POSTGRES_9_6"
   region       = "${var.region}"
 
@@ -200,14 +236,12 @@ output "director_account_creds" {
 output "director_public_ip" {
   value = "${google_compute_address.director.address}"
 }
-output "db_address_self_link" {
-  value = "${google_sql_database_instance.director.self_link}"
-}
 
-output "db_first_address" {
+output "db_address" {
   value = "${google_sql_database_instance.director.first_ip_address}"
 }
 
-output "db_address_ip" {
-  value = "${google_sql_database_instance.director.ip_address.0.ip_address}"
+output "db_name" {
+  value = "${google_sql_database_instance.director.name}"
 }
+
