@@ -57,7 +57,7 @@ vm_types:
 
 - name: concourse-medium
   cloud_properties:
-    instance_type: t2.medium {{ if .Spot }}    
+    instance_type: t2.medium {{ if .Spot }}
     spot_bid_price: 0.0567 # on-demand price: 0.0464
     spot_ondemand_fallback: true # {{ end }}
     ephemeral_disk:
@@ -69,7 +69,7 @@ vm_types:
 
 - name: concourse-large
   cloud_properties:
-    instance_type: m5.large {{ if .Spot }}    
+    instance_type: m5.large {{ if .Spot }}
     spot_bid_price: 0.13 # on-demand price: 0.107
     spot_ondemand_fallback: true # {{ end }}
     ephemeral_disk:
