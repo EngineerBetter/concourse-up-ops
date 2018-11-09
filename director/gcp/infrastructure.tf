@@ -1,58 +1,58 @@
 variable "zone" {
   type = "string"
-	default = "<% .Zone %>"
+	default = "{{ .Zone }}"
 }
 variable "tags" {
   type = "string"
-	default = "<% .Tags %>"
+	default = "{{ .Tags }}"
 }
 variable "project" {
   type = "string"
-	default = "<% .Project %>"
+	default = "{{ .Project }}"
 }
 variable "gcpcredentialsjson" {
   type = "string"
-	default = "<% .GCPCredentialsJSON %>"
+	default = "{{ .GCPCredentialsJSON }}"
 }
 variable "externalip" {
   type = "string"
-	default = "<% .ExternalIP %>"
+	default = "{{ .ExternalIP }}"
 }
 
 variable "deployment" {
   type = "string"
-	default = "<% .Deployment %>"
+	default = "{{ .Deployment }}"
 }
 variable "region" {
   type = "string"
-	default = "<% .Region %>"
+	default = "{{ .Region }}"
 }
 
 variable "db_tier" {
   type = "string"
-	default = "<% .DBTier %>"
+	default = "{{ .DBTier }}"
 }
 
 variable "db_username" {
   type = "string"
-	default = "<% .DBUsername %>"
+	default = "{{ .DBUsername }}"
 }
 variable "db_password" {
   type = "string"
-	default = "<% .DBPassword %>"
+	default = "{{ .DBPassword }}"
 }
 
 provider "google" {
-    credentials = "<% .GCPCredentialsJSON %>"
-    project = "<% .Project %>"
+    credentials = "{{ .GCPCredentialsJSON }}"
+    project = "{{ .Project }}"
     region = "us-east1"
 }
 
 
 terraform {
 	backend "gcs" {
-		bucket = "<% .ConfigBucket %>"
-		region = "<% .Region %>"
+		bucket = "{{ .ConfigBucket }}"
+		region = "{{ .Region }}"
 	}
 }
 

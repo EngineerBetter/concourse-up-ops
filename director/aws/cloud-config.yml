@@ -2,7 +2,7 @@
 azs:
 - name: z1
   cloud_properties:
-    availability_zone: <% .AvailabilityZone %>
+    availability_zone: {{ .AvailabilityZone }}
 
 vm_types:
 - name: concourse-web-small
@@ -13,7 +13,7 @@ vm_types:
       type: gp2
       encrypted: true
     security_groups:
-    - <% .VMsSecurityGroupID %>
+    - {{ .VMsSecurityGroupID }}
 
 - name: concourse-web-medium
   cloud_properties:
@@ -23,7 +23,7 @@ vm_types:
       type: gp2
       encrypted: true
     security_groups:
-    - <% .VMsSecurityGroupID %>
+    - {{ .VMsSecurityGroupID }}
 
 - name: concourse-web-large
   cloud_properties:
@@ -33,7 +33,7 @@ vm_types:
       type: gp2
       encrypted: true
     security_groups:
-    - <% .VMsSecurityGroupID %>
+    - {{ .VMsSecurityGroupID }}
 
 - name: concourse-web-xlarge
   cloud_properties:
@@ -43,7 +43,7 @@ vm_types:
       type: gp2
       encrypted: true
     security_groups:
-    - <% .VMsSecurityGroupID %>
+    - {{ .VMsSecurityGroupID }}
 
 - name: concourse-web-2xlarge
   cloud_properties:
@@ -53,103 +53,103 @@ vm_types:
       type: gp2
       encrypted: true
     security_groups:
-    - <% .VMsSecurityGroupID %>
+    - {{ .VMsSecurityGroupID }}
 
 - name: concourse-medium
   cloud_properties:
-    instance_type: t2.medium
-<% if .Spot %>    spot_bid_price: 0.0567 # on-demand price: 0.0464 <% end %>
-    spot_ondemand_fallback: true
+    instance_type: t2.medium {{ if .Spot }}    
+    spot_bid_price: 0.0567 # on-demand price: 0.0464
+    spot_ondemand_fallback: true # {{ end }}
     ephemeral_disk:
       size: 200_000
       type: gp2
       encrypted: true
     security_groups:
-    - <% .VMsSecurityGroupID %>
+    - {{ .VMsSecurityGroupID }}
 
 - name: concourse-large
   cloud_properties:
-    instance_type: m5.large
-<% if .Spot %>    spot_bid_price: 0.13 # on-demand price: 0.107 <% end %>
-    spot_ondemand_fallback: true
+    instance_type: m5.large {{ if .Spot }}    
+    spot_bid_price: 0.13 # on-demand price: 0.107
+    spot_ondemand_fallback: true # {{ end }}
     ephemeral_disk:
       size: 200_000
       type: gp2
       encrypted: true
     security_groups:
-    - <% .VMsSecurityGroupID %>
+    - {{ .VMsSecurityGroupID }}
 
 - name: concourse-xlarge
   cloud_properties:
-    instance_type: m5.xlarge
-<% if .Spot %>    spot_bid_price: 0.26 # on-demand price: 0.214 <% end %>
-    spot_ondemand_fallback: true
+    instance_type: m5.xlarge {{ if .Spot }}
+    spot_bid_price: 0.26 # on-demand price: 0.214
+    spot_ondemand_fallback: true # {{ end }}
     ephemeral_disk:
       size: 200_000
       type: gp2
       encrypted: true
     security_groups:
-    - <% .VMsSecurityGroupID %>
+    - {{ .VMsSecurityGroupID }}
 
 - name: concourse-2xlarge
   cloud_properties:
-    instance_type: m5.2xlarge
-<% if .Spot %>    spot_bid_price: 0.51 # on-demand price: 0.428 <% end %>
-    spot_ondemand_fallback: true
+    instance_type: m5.2xlarge {{ if .Spot }}
+    spot_bid_price: 0.51 # on-demand price: 0.428
+    spot_ondemand_fallback: true # {{ end }}
     ephemeral_disk:
       size: 200_000
       type: gp2
       encrypted: true
     security_groups:
-    - <% .VMsSecurityGroupID %>
+    - {{ .VMsSecurityGroupID }}
 
 - name: concourse-4xlarge
   cloud_properties:
-    instance_type: m5.4xlarge
-<% if .Spot %>    spot_bid_price: 1.03 # on-demand price: 0.856 <% end %>
-    spot_ondemand_fallback: true
+    instance_type: m5.4xlarge {{ if .Spot }}
+    spot_bid_price: 1.03 # on-demand price: 0.856
+    spot_ondemand_fallback: true # {{ end }}
     ephemeral_disk:
       size: 200_000
       type: gp2
       encrypted: true
     security_groups:
-    - <% .VMsSecurityGroupID %>
+    - {{ .VMsSecurityGroupID }}
 
 - name: concourse-12xlarge
   cloud_properties:
-    instance_type: m5.12xlarge
-<% if .Spot %>    spot_bid_price: 3.08 # on-demand price: 2.57 <% end %>
-    spot_ondemand_fallback: true
+    instance_type: m5.12xlarge {{ if .Spot }}
+    spot_bid_price: 3.08 # on-demand price: 2.57
+    spot_ondemand_fallback: true # {{ end }}
     ephemeral_disk:
       size: 200_000
       type: gp2
       encrypted: true
     security_groups:
-    - <% .VMsSecurityGroupID %>
+    - {{ .VMsSecurityGroupID }}
 
 - name: concourse-24xlarge
   cloud_properties:
-    instance_type: m5.24xlarge
-<% if .Spot %>    spot_bid_price: 6.17 # on-demand price: 5.14 <% end %>
-    spot_ondemand_fallback: true
+    instance_type: m5.24xlarge {{ if .Spot }}
+    spot_bid_price: 6.17 # on-demand price: 5.14
+    spot_ondemand_fallback: true # {{ end }}
     ephemeral_disk:
       size: 200_000
       type: gp2
       encrypted: true
     security_groups:
-    - <% .VMsSecurityGroupID %>
+    - {{ .VMsSecurityGroupID }}
 
 - name: compilation
   cloud_properties:
-    instance_type: m5.large
-<% if .Spot %>    spot_bid_price: 0.13 # on-demand price: 0.107 <% end %>
-    spot_ondemand_fallback: true
+    instance_type: m5.large {{ if .Spot }}
+    spot_bid_price: 0.13 # on-demand price: 0.107
+    spot_ondemand_fallback: true # {{ end }}
     ephemeral_disk:
       size: 5_000
       type: gp2
       encrypted: true
     security_groups:
-    - <% .VMsSecurityGroupID %>
+    - {{ .VMsSecurityGroupID }}
 
 disk_types:
 - name: default
@@ -178,7 +178,7 @@ networks:
     reserved:
     - 10.0.0.1-10.0.0.5
     cloud_properties:
-      subnet: <% .PublicSubnetID %>
+      subnet: {{ .PublicSubnetID }}
 - name: private
   type: manual
   subnets:
@@ -190,7 +190,7 @@ networks:
     reserved:
     - 10.0.1.1-10.0.1.5
     cloud_properties:
-      subnet: <% .PrivateSubnetID %>
+      subnet: {{ .PrivateSubnetID }}
 
 - name: vip
   type: vip
@@ -199,8 +199,8 @@ vm_extensions:
 - name: atc
   cloud_properties:
     security_groups:
-    - <% .VMsSecurityGroupID %>
-    - <% .ATCSecurityGroupID %>
+    - {{ .VMsSecurityGroupID }}
+    - {{ .ATCSecurityGroupID }}
 
 compilation:
   workers: 5

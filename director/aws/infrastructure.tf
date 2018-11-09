@@ -1,80 +1,80 @@
 terraform {
 	backend "s3" {
-		bucket = "<% .ConfigBucket %>"
-		key    = "<% .TFStatePath %>"
-		region = "<% .Region %>"
+		bucket = "{{ .ConfigBucket }}"
+		key    = "{{ .TFStatePath }}"
+		region = "{{ .Region }}"
 	}
 }
 
 variable "rds_instance_class" {
   type = "string"
-	default = "<% .RDSInstanceClass %>"
+	default = "{{ .RDSInstanceClass }}"
 }
 
 variable "rds_instance_username" {
   type = "string"
-	default = "<% .RDSUsername %>"
+	default = "{{ .RDSUsername }}"
 }
 
 variable "rds_instance_password" {
   type = "string"
-	default = "<% .RDSPassword %>"
+	default = "{{ .RDSPassword }}"
 }
 
 variable "source_access_ip" {
   type = "string"
-	default = "<% .SourceAccessIP %>"
+	default = "{{ .SourceAccessIP }}"
 }
 
 variable "region" {
   type = "string"
-	default = "<% .Region %>"
+	default = "{{ .Region }}"
 }
 
 variable "availability_zone" {
   type = "string"
-	default = "<% .AvailabilityZone %>"
+	default = "{{ .AvailabilityZone }}"
 }
 
 variable "deployment" {
   type = "string"
-	default = "<% .Deployment %>"
+	default = "{{ .Deployment }}"
 }
 
 variable "rds_default_database_name" {
   type = "string"
-	default = "<% .RDSDefaultDatabaseName %>"
+	default = "{{ .RDSDefaultDatabaseName }}"
 }
 
 variable "public_key" {
   type = "string"
-	default = "<% .PublicKey %>"
+	default = "{{ .PublicKey }}"
 }
 
 variable "project" {
   type = "string"
-	default = "<% .Project %>"
+	default = "{{ .Project }}"
 }
 
 variable "multi_az_rds" {
   type = "string"
-  default = <%if .MultiAZRDS %>true<%else%>false<%end%>
+  default = {{if .MultiAZRDS }}true{{else}}false{{end}}
 }
 
-<%if .HostedZoneID %>
+{{if .HostedZoneID }}
 variable "hosted_zone_id" {
   type = "string"
-  default = "<% .HostedZoneID %>"
+  default = "{{ .HostedZoneID }}"
 }
 
 variable "hosted_zone_record_prefix" {
   type = "string"
-  default = "<% .HostedZoneRecordPrefix %>"
+  default = "{{ .HostedZoneRecordPrefix }}"
 }
-<%end%>
+{{end}}
 
 provider "aws" {
-	region = "<% .Region %>"
+	region = "{{ .Region }}"
 }
 
 resource "aws_key_pair" "default" {
@@ -83,9 +83,9 @@ resource "aws_key_pair" "default" {
 }
 
 resource "aws_s3_bucket" "blobstore" {
-  bucket        = "${var.deployment}-<% .Namespace %>-blobstore"
+  bucket        = "${var.deployment}-{{ .Namespace }}-blobstore"
   force_destroy = true
-  region = "<% .Region %>"
+  region = "{{ .Region }}"
 
   tags {
     Name = "${var.deployment}"
@@ -95,16 +95,16 @@ resource "aws_s3_bucket" "blobstore" {
 }
 
 resource "aws_iam_user" "blobstore" {
-  name = "${var.deployment}-<% .Namespace %>-blobstore"
+  name = "${var.deployment}-{{ .Namespace }}-blobstore"
 }
 
 resource "aws_iam_access_key" "blobstore" {
-  user = "${var.deployment}-<% .Namespace %>-blobstore"
+  user = "${var.deployment}-{{ .Namespace }}-blobstore"
   depends_on = ["aws_iam_user.blobstore"]
 }
 
 resource "aws_iam_user_policy" "blobstore" {
-  name = "${var.deployment}-<% .Namespace %>-blobstore"
+  name = "${var.deployment}-{{ .Namespace }}-blobstore"
   user = "${aws_iam_user.blobstore.name}"
 
   policy = <<EOF
@@ -235,7 +235,7 @@ resource "aws_route_table_association" "private" {
   route_table_id = "${aws_route_table.private.id}"
 }
 
-<%if .HostedZoneID %>
+{{if .HostedZoneID }}
 resource "aws_route53_record" "concourse" {
   zone_id = "${var.hosted_zone_id}"
   name    = "${var.hosted_zone_record_prefix}"
@@ -243,7 +243,7 @@ resource "aws_route53_record" "concourse" {
   type    = "A"
   records = ["${aws_eip.atc.public_ip}"]
 }
-<%end%>
+{{end}}
 
 resource "aws_eip" "director" {
   vpc = true
@@ -453,35 +453,35 @@ resource "aws_security_group" "atc" {
     to_port     = 80
     protocol    = "tcp"
     security_groups = ["${aws_security_group.vms.id}", "${aws_security_group.director.id}"]
-    cidr_blocks = ["${aws_eip.nat.public_ip}/32", "${aws_eip.atc.public_ip}/32", <% .AllowIPs %>]
+    cidr_blocks = ["${aws_eip.nat.public_ip}/32", "${aws_eip.atc.public_ip}/32", {{ .AllowIPs }}]
   }
 
   ingress {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = ["${aws_eip.nat.public_ip}/32", "${aws_eip.atc.public_ip}/32", <% .AllowIPs %>]
+    cidr_blocks = ["${aws_eip.nat.public_ip}/32", "${aws_eip.atc.public_ip}/32", {{ .AllowIPs }}]
   }
 
   ingress {
     from_port   = 3000
     to_port     = 3000
     protocol    = "tcp"
-    cidr_blocks = ["${aws_eip.nat.public_ip}/32", <% .AllowIPs %>]
+    cidr_blocks = ["${aws_eip.nat.public_ip}/32", {{ .AllowIPs }}]
   }
 
   ingress {
     from_port   = 8844
     to_port     = 8844
     protocol    = "tcp"
-    cidr_blocks = ["${aws_eip.nat.public_ip}/32", <% .AllowIPs %>]
+    cidr_blocks = ["${aws_eip.nat.public_ip}/32", {{ .AllowIPs }}]
   }
 
   ingress {
     from_port   = 8443
     to_port     = 8443
     protocol    = "tcp"
-    cidr_blocks = ["${aws_eip.nat.public_ip}/32", "${aws_eip.atc.public_ip}/32", <% .AllowIPs %>]
+    cidr_blocks = ["${aws_eip.nat.public_ip}/32", "${aws_eip.atc.public_ip}/32", {{ .AllowIPs }}]
   }
 }
 

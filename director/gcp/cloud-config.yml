@@ -2,7 +2,7 @@
 azs:
 - name: z1
   cloud_properties:
-    zone: <% .Zone %>
+    zone: {{ .Zone }}
 
 vm_types:
 - name: concourse-web-small
@@ -37,57 +37,57 @@ vm_types:
 
 - name: concourse-medium
   cloud_properties:
-    machine_type: n1-standard-1
-<% if .Preemptible %>    preemptible: true
+    machine_type: n1-standard-1 {{ if .Preemptible }}
+    preemptible: true # {{ end }}
     root_disk_size_gb: 200
     root_disk_type: pd-ssd
 
 - name: concourse-large
   cloud_properties:
-    machine_type: n1-standard-2
-<% if .Preemptible %>    preemptible: true
+    machine_type: n1-standard-2 {{ if .Preemptible }}
+    preemptible: true # {{ end }}
     root_disk_size_gb: 200
     root_disk_type: pd-ssd
 
 - name: concourse-xlarge
   cloud_properties:
-    machine_type: n1-standard-4
-<% if .Preemptible %>    preemptible: true
+    machine_type: n1-standard-4 {{ if .Preemptible }}
+    preemptible: true # {{ end }}
     root_disk_size_gb: 200
     root_disk_type: pd-ssd
 
 - name: concourse-2xlarge
   cloud_properties:
-    machine_type: n1-standard-8
-<% if .Preemptible %>    preemptible: true
+    machine_type: n1-standard-8 {{ if .Preemptible }}
+    preemptible: true # {{ end }}
     root_disk_size_gb: 200
     root_disk_type: pd-ssd
 
 - name: concourse-4xlarge
   cloud_properties:
-    machine_type: n1-standard-16
-<% if .Preemptible %>    preemptible: true
+    machine_type: n1-standard-16 {{ if .Preemptible }}
+    preemptible: true # {{ end }}
     root_disk_size_gb: 200
     root_disk_type: pd-ssd
 
 - name: concourse-10xlarge
   cloud_properties:
-    machine_type: n1-standard-32
-<% if .Preemptible %>    preemptible: true
+    machine_type: n1-standard-32 {{ if .Preemptible }}
+    preemptible: true # {{ end }}
     root_disk_size_gb: 200
     root_disk_type: pd-ssd
 
 - name: concourse-16xlarge
   cloud_properties:
-    machine_type: n1-standard-64
-<% if .Preemptible %>    preemptible: true
+    machine_type: n1-standard-64 {{ if .Preemptible }}
+    preemptible: true # {{ end }}
     root_disk_size_gb: 200
     root_disk_type: pd-ssd
 
 - name: compilation
   cloud_properties:
-    machine_type: n1-standard-2
-<% if .Preemptible %>    preemptible: true
+    machine_type: n1-standard-2 {{ if .Preemptible }}
+    preemptible: true # {{ end }}
     root_disk_size_gb: 5
     root_disk_type: pd-ssd
 
@@ -116,7 +116,7 @@ networks:
     reserved:
     - 10.0.0.1-10.0.0.5
     cloud_properties:
-      subnetwork_name: <% .PublicSubnetwork %>
+      subnetwork_name: {{ .PublicSubnetwork }}
 - name: private
   type: manual
   subnets:
@@ -128,7 +128,7 @@ networks:
     reserved:
     - 10.0.1.1-10.0.1.5
     cloud_properties:
-      subnetwork_name: <% .PrivateSubnetwork %>
+      subnetwork_name: {{ .PrivateSubnetwork }}
 - name: vip
   type: vip
 
