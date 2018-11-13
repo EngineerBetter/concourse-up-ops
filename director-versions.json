@@ -5,9 +5,9 @@
     "version": "268.2.0"
   },
   "bosh-cli": {
-    "windows": "https://s3.amazonaws.com/bosh-cli-artifacts/bosh-cli-5.0.1-windows-amd64.exe",
-    "mac": "https://s3.amazonaws.com/bosh-cli-artifacts/bosh-cli-5.0.1-darwin-amd64",
-    "linux": "https://s3.amazonaws.com/bosh-cli-artifacts/bosh-cli-5.0.1-linux-amd64"
+    "windows": "https://s3.amazonaws.com/bosh-cli-artifacts/bosh-cli-5.3.1-windows-amd64.exe",
+    "mac": "https://s3.amazonaws.com/bosh-cli-artifacts/bosh-cli-5.3.1-darwin-amd64",
+    "linux": "https://s3.amazonaws.com/bosh-cli-artifacts/bosh-cli-5.3.1-linux-amd64"
   },
   "bpm": {
     "url": "https://s3.amazonaws.com/bosh-compiled-release-tarballs/bpm-0.12.3-ubuntu-xenial-97.17-20180919-183904-508666998-20180919183910.tgz?versionId=prHEVL4zedQ.NxMXbIOUGlwq6hidaqYq",
