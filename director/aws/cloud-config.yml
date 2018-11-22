@@ -137,7 +137,7 @@ vm_types:
       type: gp2
       encrypted: true
     security_groups:
-    - <% .VMsSecurityGroupID %>
+    - {{ .VMsSecurityGroupID }}
 
 - name: concourse-12xlarge
   cloud_properties:
@@ -161,7 +161,7 @@ vm_types:
       type: gp2
       encrypted: true
     security_groups:
-    - <% .VMsSecurityGroupID %>
+    - {{ .VMsSecurityGroupID }}
 
 - name: concourse-24xlarge
   cloud_properties:
@@ -183,3 +183,62 @@ vm_types:
     instance_type: m4.large {{ if .Spot }}
     spot_bid_price: 0.13 # on-demand price: 0.111
     spot_ondemand_fallback: true # {{ end }} {{ end }}
+
+disk_types:
+- name: default
+  disk_size: 50_000
+  cloud_properties:
+    type: gp2
+    encrypted: true
+- name: large
+  disk_size: 200_000
+  cloud_properties:
+    type: gp2
+    encrypted: true
+
+networks:
+- name: public
+  type: manual
+  subnets:
+  - range: 10.0.0.0/24
+    gateway: 10.0.0.1
+    dns:
+    - 10.0.0.2
+    az: z1
+    static:
+    - 10.0.0.6
+    - 10.0.0.7
+    reserved:
+    - 10.0.0.1-10.0.0.5
+    cloud_properties:
+      subnet: {{ .PublicSubnetID }}
+- name: private
+  type: manual
+  subnets:
+  - range: 10.0.1.0/24
+    gateway: 10.0.1.1
+    dns:
+    - 10.0.0.2
+    az: z1
+    reserved:
+    - 10.0.1.1-10.0.1.5
+    cloud_properties:
+      subnet: {{ .PrivateSubnetID }}
+
+- name: vip
+  type: vip
+
+
+vm_extensions:
+- name: atc
+  cloud_properties:
+    security_groups:
+    - {{ .VMsSecurityGroupID }}
+    - {{ .ATCSecurityGroupID }}
+
+compilation:
+  workers: 5
+  reuse_compilation_vms: true
+  az: z1
+  vm_type: compilation
+  network: private 
