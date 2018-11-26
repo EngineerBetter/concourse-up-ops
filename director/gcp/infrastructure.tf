@@ -42,10 +42,15 @@ variable "db_password" {
 	default = "{{ .DBPassword }}"
 }
 
+variable "db_name" {
+  type = "string"
+  default = "{{ .DBName }}"
+}
+
 provider "google" {
     credentials = "{{ .GCPCredentialsJSON }}"
     project = "{{ .Project }}"
-    region = "us-east1"
+    region = "${var.region}"
 }
 
 
@@ -159,7 +164,7 @@ resource "google_compute_firewall" "external" {
   }
 }
 resource "google_service_account" "bosh" {
-  account_id   = "${var.deployment}-boshaccount"
+  account_id   = "${var.deployment}-bosh"
   display_name = "bosh"
 }
 resource "google_service_account_key" "bosh" {
@@ -181,11 +186,22 @@ resource "google_compute_address" "director" {
 }
 
 resource "google_sql_database_instance" "director" {
+  name = "${var.db_name}"
   database_version = "POSTGRES_9_6"
   region       = "${var.region}"
 
   settings {
     tier = "${var.db_tier}"
+
+    ip_configuration {
+      authorized_networks = [
+        {
+          value = "${google_compute_subnetwork.public.ip_cidr_range}"
+        }
+
+
+      ]
+    }
   }
 }
 
