@@ -104,6 +104,7 @@ sh -c "echo 1 > /proc/sys/net/ipv4/ip_forward"
 iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 EOT
 }
+
 resource "google_compute_network" "bosh" {
   name                    = "${var.deployment}-bosh-network"
   project                 = "${var.project}"
@@ -163,6 +164,18 @@ resource "google_compute_firewall" "external" {
     protocol = "icmp"
   }
 }
+
+resource "google_compute_firewall" "sql" {
+  name        = "${var.deployment}-sql"
+  description = "BOSH CI External Traffic"
+  network     = "${google_compute_network.bosh.self_link}"
+  direction = "EGRESS"
+  allow {
+    protocol = "tcp"
+    ports    = ["5432"]
+  }
+  destination_ranges = ["${google_sql_database_instance.director.first_ip_address}/32"]
+}
 resource "google_service_account" "bosh" {
   account_id   = "${var.deployment}-bosh"
   display_name = "bosh"
@@ -194,13 +207,9 @@ resource "google_sql_database_instance" "director" {
     tier = "${var.db_tier}"
 
     ip_configuration {
-      authorized_networks = [
-        {
-          value = "${google_compute_subnetwork.public.ip_cidr_range}"
-        }
-
-
-      ]
+      authorized_networks = {
+        name = "atc_conf"
+        value = "${google_compute_address.atc_ip.address}/32"}
     }
   }
 }
