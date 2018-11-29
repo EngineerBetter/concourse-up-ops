@@ -210,6 +210,11 @@ resource "google_sql_database_instance" "director" {
       authorized_networks = {
         name = "atc_conf"
         value = "${google_compute_address.atc_ip.address}/32"}
+
+    authorized_networks = {
+      name = "bosh"
+      value = "${google_compute_address.director.address}/32"
+    }
     }
   }
 }
