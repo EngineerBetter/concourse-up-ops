@@ -257,31 +257,16 @@ resource "aws_route53_record" "concourse" {
 resource "aws_eip" "director" {
   vpc = true
   depends_on = ["aws_internet_gateway.default"]
-
-    tags {
-    name = "${var.deployment}-director"
-    concourse-up-project = "${var.project}"
-  }
 }
 
 resource "aws_eip" "atc" {
   vpc = true
   depends_on = ["aws_internet_gateway.default"]
-
-    tags {
-    name = "${var.deployment}-atc"
-    concourse-up-project = "${var.project}"
-  }
 }
 
 resource "aws_eip" "nat" {
   vpc = true
   depends_on = ["aws_internet_gateway.default"]
-
-    tags {
-    name = "${var.deployment}-nat"
-    concourse-up-project = "${var.project}"
-  }
 }
 
 resource "aws_security_group" "director" {
