@@ -516,7 +516,7 @@ resource "aws_route_table_association" "rds_b" {
 
 resource "aws_subnet" "rds_a" {
   vpc_id            = "${aws_vpc.default.id}"
-  availability_zone = "${data.aws_availability_zones.available.names[0]}"
+  availability_zone = "${element(sort(data.aws_availability_zones.available.names),0)}"
   cidr_block        = "10.0.4.0/24"
 
   tags {
@@ -528,7 +528,7 @@ resource "aws_subnet" "rds_a" {
 
 resource "aws_subnet" "rds_b" {
   vpc_id            = "${aws_vpc.default.id}"
-  availability_zone = "${data.aws_availability_zones.available.names[1]}"
+  availability_zone = "${element(sort(data.aws_availability_zones.available.names),1)}"
   cidr_block        = "10.0.5.0/24"
 
   tags {
