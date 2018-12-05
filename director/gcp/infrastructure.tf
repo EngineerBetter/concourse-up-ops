@@ -205,6 +205,9 @@ resource "google_sql_database_instance" "director" {
 
   settings {
     tier = "${var.db_tier}"
+    user_labels {
+      deployment = "${var.deployment}"
+    }
 
     ip_configuration {
       authorized_networks = {
