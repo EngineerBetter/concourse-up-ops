@@ -270,7 +270,7 @@ output "director_public_ip" {
   value = "${google_compute_address.director.address}"
 }
 
-output "db_address" {
+output "bosh_db_address" {
   value = "${google_sql_database_instance.director.first_ip_address}"
 }
 
