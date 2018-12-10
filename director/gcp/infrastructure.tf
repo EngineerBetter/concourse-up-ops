@@ -65,7 +65,7 @@ terraform {
 resource "google_compute_route" "nat" {
   name                   = "${var.deployment}-nat-route"
   dest_range             = "0.0.0.0/0"
-  network                = "${google_compute_network.bosh.name}"
+  network                = "${google_compute_network.default.name}"
   next_hop_instance      = "${google_compute_instance.nat-instance.name}"
   next_hop_instance_zone = "${var.zone}"
   priority               = 800
@@ -105,7 +105,7 @@ iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 EOT
 }
 
-resource "google_compute_network" "bosh" {
+resource "google_compute_network" "default" {
   name                    = "${var.deployment}-bosh-network"
   project                 = "${var.project}"
   auto_create_subnetworks = "false"
@@ -114,20 +114,20 @@ resource "google_compute_network" "bosh" {
 resource "google_compute_subnetwork" "public" {
   name          = "${var.deployment}-bosh-${var.region}-subnet-public"
   ip_cidr_range = "10.0.0.0/24"
-  network       = "${google_compute_network.bosh.self_link}"
+  network       = "${google_compute_network.default.self_link}"
   project       = "${var.project}"
 }
 resource "google_compute_subnetwork" "private" {
   name          = "${var.deployment}-bosh-${var.region}-subnet-private"
   ip_cidr_range = "10.0.1.0/24"
-  network       = "${google_compute_network.bosh.self_link}"
+  network       = "${google_compute_network.default.self_link}"
   project       = "${var.project}"
 }
 
 resource "google_compute_firewall" "internal" {
   name        = "${var.deployment}-int"
   description = "BOSH CI Internal Traffic"
-  network     = "${google_compute_network.bosh.self_link}"
+  network     = "${google_compute_network.default.self_link}"
   source_tags = ["internal"]
   target_tags = ["internal"]
 
@@ -147,7 +147,7 @@ resource "google_compute_firewall" "internal" {
 resource "google_compute_firewall" "external" {
   name        = "${var.deployment}-ext"
   description = "BOSH CI External Traffic"
-  network     = "${google_compute_network.bosh.self_link}"
+  network     = "${google_compute_network.default.self_link}"
   target_tags = ["external"]
 
   allow {
@@ -168,7 +168,7 @@ resource "google_compute_firewall" "external" {
 resource "google_compute_firewall" "sql" {
   name        = "${var.deployment}-sql"
   description = "BOSH CI External Traffic"
-  network     = "${google_compute_network.bosh.self_link}"
+  network     = "${google_compute_network.default.self_link}"
   direction = "EGRESS"
   allow {
     protocol = "tcp"
@@ -234,7 +234,7 @@ resource "google_sql_user" "director" {
   password = "${var.db_password}"
 }
 output "network" {
-value = "${google_compute_network.bosh.name}"
+value = "${google_compute_network.default.name}"
 }
 
 output "private_subnetwork_name" {
