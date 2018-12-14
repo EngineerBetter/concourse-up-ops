@@ -164,6 +164,32 @@ resource "google_compute_firewall" "external" {
     protocol = "icmp"
   }
 }
+resource "google_compute_firewall" "temporary" {
+  name        = "${var.deployment}-temporary"
+  description = "Temporarily allows all traffic - will need to be restricted"
+  network     = "${google_compute_network.default.self_link}"
+
+  allow {
+    protocol = "tcp"
+  }
+  allow {
+    protocol = "esp"
+  }
+
+  allow {
+    protocol = "udp"
+  }
+
+  allow {
+    protocol = "icmp"
+  }
+  allow {
+    protocol = "ah"
+  }
+  allow {
+    protocol = "sctp"
+  }
+}
 
 resource "google_compute_firewall" "sql" {
   name        = "${var.deployment}-sql"
@@ -176,6 +202,7 @@ resource "google_compute_firewall" "sql" {
   }
   destination_ranges = ["${google_sql_database_instance.director.first_ip_address}/32"]
 }
+
 resource "google_service_account" "bosh" {
   account_id   = "${var.deployment}-bosh"
   display_name = "bosh"
@@ -278,3 +305,6 @@ output "db_name" {
   value = "${google_sql_database_instance.director.name}"
 }
 
+output "sql_ca_cert" {
+  value = "${google_sql_database_instance.director.server_ca_cert.0.cert}"
+}
