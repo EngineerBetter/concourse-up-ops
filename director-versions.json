@@ -1,13 +1,13 @@
 {
   "bosh": {
-    "url": "https://s3.amazonaws.com/bosh-compiled-release-tarballs/bosh-268.3.0-ubuntu-xenial-170.9-20181126-235012-624865282-20181126235018.tgz",
-    "sha1": "55db35a445d93eb263a2feeec2bc88cbbd8ffe33",
-    "version": "268.3.0"
+    "url": "https://s3.amazonaws.com/bosh-compiled-release-tarballs/bosh-268.4.0-ubuntu-xenial-170.12-20181211-205456-423591735-20181211205502.tgz",
+    "sha1": "cee0cef71e41718be9ee646f932aec37580a0200",
+    "version": "268.4.0"
   },
   "bosh-cli": {
-    "windows": "https://s3.amazonaws.com/bosh-cli-artifacts/bosh-cli-5.3.1-windows-amd64.exe",
-    "mac": "https://s3.amazonaws.com/bosh-cli-artifacts/bosh-cli-5.3.1-darwin-amd64",
-    "linux": "https://s3.amazonaws.com/bosh-cli-artifacts/bosh-cli-5.3.1-linux-amd64"
+    "windows": "https://s3.amazonaws.com/bosh-cli-artifacts/bosh-cli-5.0.1-windows-amd64.exe",
+    "mac": "https://s3.amazonaws.com/bosh-cli-artifacts/bosh-cli-5.0.1-darwin-amd64",
+    "linux": "https://s3.amazonaws.com/bosh-cli-artifacts/bosh-cli-5.0.1-linux-amd64"
   },
   "bpm": {
     "url": "https://s3.amazonaws.com/bosh-compiled-release-tarballs/bpm-0.12.3-ubuntu-xenial-170.9-20181126-234429-76772131-20181126234436.tgz",
@@ -15,9 +15,9 @@
     "version": "0.12.3"
   },
   "cpi": {
-    "url": "https://bosh.io/d/github.com/cloudfoundry-incubator/bosh-aws-cpi-release?v=72",
-    "sha1": "b7999e95115bb691a630c07f0439ef5b577884c2",
-    "version": "72"
+    "url": "https://bosh.io/d/github.com/cloudfoundry/bosh-aws-cpi-release?v=73",
+    "sha1": "9d02123488919a325f1ed4f349090c4de6142373",
+    "version": "73"
   },
   "fly": {
     "windows": "https://github.com/concourse/concourse/releases/download/v4.2.1/fly_windows_amd64",
