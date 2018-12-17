@@ -123,7 +123,7 @@ instance_groups:
         role:
           name: ((postgres_role))
           password: ((postgres_password))
-        sslmode: verify-ca
+        sslmode: disable
       tls_cert: ((external_tls.certificate))
       tls_key: ((external_tls.private_key))
       tls_bind_port: 443
@@ -246,7 +246,8 @@ instance_groups:
         address: ((postgres_host))
         port: ((postgres_port))
         db_scheme: postgresql
-        tls_enabled: true
+        tls_enabled: false
+        skip_ssl_validation: true
         databases:
         - tag: uaa
           name: uaa
@@ -279,13 +280,14 @@ instance_groups:
             ca_certs: [((internal_tls.ca))]
         data_storage:
           type: postgres
+          hostname_verification:
+           enabled: false
           username: ((postgres_role))
           password: ((postgres_password))
           host: ((postgres_host))
           port: ((postgres_port))
           database: credhub
-          require_tls: true
-          tls_ca: ((postgres_ca_cert))
+          require_tls: false
         encryption:
           keys:
           - provider_name: int
