@@ -310,5 +310,5 @@ output "sql_ca_cert" {
 }
 
 output "nat_gateway_ip" {
-  value = "${google_compute_instance.nat-instance.first_ip_address}"
+  value = "${google_compute_instance.nat-instance.network_interface.0.access_config.0.nat_ip}"
 }
