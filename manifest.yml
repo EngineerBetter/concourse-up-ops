@@ -70,6 +70,8 @@ releases:
   version: latest
 - name: uaa
   version: latest
+- name: bosh-dns
+  version: latest
 
 stemcells:
 - alias: xenial
@@ -295,6 +297,17 @@ instance_groups:
           providers:
           - name: int
             type: internal
+  - name: bosh-dns
+    release: bosh-dns
+    properties:
+      cache:
+        enabled: true
+      api:
+        server:
+          tls: ((internal_tls))
+        client:
+          tls: ((internal_tls))
+
 
 - name: worker
   azs: [z1]
