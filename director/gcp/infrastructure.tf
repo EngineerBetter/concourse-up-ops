@@ -305,10 +305,9 @@ output "db_name" {
   value = "${google_sql_database_instance.director.name}"
 }
 
-output "sql_ca_cert" {
-  value = "${google_sql_database_instance.director.server_ca_cert.0.cert}"
-}
-
 output "nat_gateway_ip" {
   value = "${google_compute_instance.nat-instance.network_interface.0.access_config.0.nat_ip}"
+}
+output "server_ca_cert" {
+  value = "${google_sql_database_instance.director.server_ca_cert.0.cert}"
 }
