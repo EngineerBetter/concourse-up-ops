@@ -47,6 +47,18 @@ variable "db_name" {
   default = "{{ .DBName }}"
 }
 
+{{if .DNSManagedZoneName }}
+variable "dns_managed_zone_name" {
+  type = "string"
+  default = "{{ .DNSManagedZoneName }}"
+}
+
+variable "dns_record_set_prefix" {
+  type = "string"
+  default = "{{ .DNSRecordSetPrefix }}"
+}
+{{end}}
+
 provider "google" {
     credentials = "{{ .GCPCredentialsJSON }}"
     project = "{{ .Project }}"
@@ -60,6 +72,21 @@ terraform {
 		region = "{{ .Region }}"
 	}
 }
+
+data "google_dns_managed_zone" "dns_zone" {
+  name = "${var.dns_managed_zone_name}"
+}
+
+{{if .DNSManagedZoneName }}
+resource "google_dns_record_set" "dns" {
+  managed_zone = "${data.google_dns_managed_zone.dns_zone.name}"
+  name = "${var.dns_record_set_prefix}.${data.google_dns_managed_zone.dns_zone.dns_name}"
+  type    = "A"
+  ttl     = 60
+
+  rrdatas = ["${google_compute_address.atc_ip.address}"]
+}
+{{end}}
 
 // route for nat
 resource "google_compute_route" "nat" {
