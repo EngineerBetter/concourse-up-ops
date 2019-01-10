@@ -59,6 +59,11 @@ variable "dns_record_set_prefix" {
 }
 {{end}}
 
+variable "source_access_ip" {
+  type = "string"
+  default = "{{ .ExternalIP }}"
+}
+
 provider "google" {
     credentials = "{{ .GCPCredentialsJSON }}"
     project = "{{ .Project }}"
@@ -151,6 +156,74 @@ resource "google_compute_subnetwork" "private" {
   project       = "${var.project}"
 }
 
+resource "google_compute_firewall" "director" {
+  name = "${var.deployment}-director"
+  description = "Firewall for external access to BOSH director"
+  network     = "${google_compute_network.default.self_link}"
+  target_tags = ["external"]
+  source_ranges = ["${var.source_access_ip}/32", "${google_compute_instance.nat-instance.network_interface.0.access_config.0.nat_ip}/32"]
+  allow {
+    protocol = "tcp"
+    ports = ["6868", "25555", "22"]
+  }
+}
+
+resource "google_compute_firewall" "atc-one" {
+  name = "${var.deployment}-atc-one"
+  description = "Firewall for external access to concourse atc"
+  network     = "${google_compute_network.default.self_link}"
+  target_tags = ["web"]
+  source_tags = ["web", "worker", "external", "internal"]
+  source_ranges = [{{ .AllowIPs }}]
+  allow {
+    protocol = "tcp"
+    ports = ["80"]
+  }
+}
+
+resource "google_compute_firewall" "atc-two" {
+  name = "${var.deployment}-atc-two"
+  description = "Firewall for external access to concourse atc"
+  network     = "${google_compute_network.default.self_link}"
+  target_tags = ["web"]
+  source_ranges = ["${google_compute_instance.nat-instance.network_interface.0.access_config.0.nat_ip}/32", "${google_compute_address.atc_ip.address}/32", {{ .AllowIPs }}]
+  allow {
+    protocol = "tcp"
+    ports = ["443", "8443"]
+  }
+}
+
+resource "google_compute_firewall" "vms" {
+  name = "${var.deployment}-vms"
+  description = "Concourse UP VMs firewall"
+  network     = "${google_compute_network.default.self_link}"
+  target_tags = ["web", "external", "internal", "worker"]
+  source_ranges = ["10.0.0.0/16"]
+  allow {
+    protocol = "tcp"
+    ports = ["6868","4222", "25250", "25555", "25777","2222", "5555", "7777", "7788", "7799", "22"]
+  }
+  allow {
+    protocol = "udp"
+    ports = ["53"]
+  }
+  allow {
+    protocol = "icmp"
+  }
+}
+
+resource "google_compute_firewall" "atc-three" {
+  name = "${var.deployment}-atc-three"
+  description = "Firewall for external access to concourse atc"
+  network     = "${google_compute_network.default.self_link}"
+  target_tags = ["web"]
+  source_ranges = ["${google_compute_instance.nat-instance.network_interface.0.access_config.0.nat_ip}/32", {{ .AllowIPs }}]
+  allow {
+    protocol = "tcp"
+    ports = ["3000", "8844"]
+  }
+}
+
 resource "google_compute_firewall" "internal" {
   name        = "${var.deployment}-int"
   description = "BOSH CI Internal Traffic"
@@ -189,32 +262,6 @@ resource "google_compute_firewall" "external" {
 
   allow {
     protocol = "icmp"
-  }
-}
-resource "google_compute_firewall" "temporary" {
-  name        = "${var.deployment}-temporary"
-  description = "Temporarily allows all traffic - will need to be restricted"
-  network     = "${google_compute_network.default.self_link}"
-
-  allow {
-    protocol = "tcp"
-  }
-  allow {
-    protocol = "esp"
-  }
-
-  allow {
-    protocol = "udp"
-  }
-
-  allow {
-    protocol = "icmp"
-  }
-  allow {
-    protocol = "ah"
-  }
-  allow {
-    protocol = "sctp"
   }
 }
 
