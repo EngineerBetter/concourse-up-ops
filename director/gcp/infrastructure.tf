@@ -73,11 +73,11 @@ terraform {
 	}
 }
 
+{{if .DNSManagedZoneName }}
 data "google_dns_managed_zone" "dns_zone" {
   name = "${var.dns_managed_zone_name}"
 }
 
-{{if .DNSManagedZoneName }}
 resource "google_dns_record_set" "dns" {
   managed_zone = "${data.google_dns_managed_zone.dns_zone.name}"
   name = "${var.dns_record_set_prefix}.${data.google_dns_managed_zone.dns_zone.dns_name}"
