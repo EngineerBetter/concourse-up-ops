@@ -168,6 +168,18 @@ resource "google_compute_firewall" "director" {
   }
 }
 
+resource "google_compute_firewall" "nat" {
+  name = "${var.deployment}-nat"
+  description = "Firewall for external access to NAT"
+  network     = "${google_compute_network.default.self_link}"
+  target_tags = ["nat"]
+  source_ranges = ["0.0.0.0/0"]
+  allow {
+    protocol = "tcp"
+    ports = ["80", "443"]
+  }
+}
+
 resource "google_compute_firewall" "atc-one" {
   name = "${var.deployment}-atc-one"
   description = "Firewall for external access to concourse atc"
