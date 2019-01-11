@@ -498,7 +498,7 @@ resource "aws_security_group" "atc" {
     from_port   = 8844
     to_port     = 8844
     protocol    = "tcp"
-    cidr_blocks = ["${aws_eip.nat.public_ip}/32", {{ .AllowIPs }}]
+    cidr_blocks = ["${aws_eip.nat.public_ip}/32", "${aws_eip.atc.public_ip}/32", {{ .AllowIPs }}]
   }
 
   ingress {

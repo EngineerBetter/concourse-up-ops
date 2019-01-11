@@ -229,7 +229,7 @@ resource "google_compute_firewall" "atc-three" {
   description = "Firewall for external access to concourse atc"
   network     = "${google_compute_network.default.self_link}"
   target_tags = ["web"]
-  source_ranges = ["${google_compute_instance.nat-instance.network_interface.0.access_config.0.nat_ip}/32", {{ .AllowIPs }}]
+  source_ranges = ["${google_compute_instance.nat-instance.network_interface.0.access_config.0.nat_ip}/32", "${google_compute_address.atc_ip.address}/32", {{ .AllowIPs }}]
   allow {
     protocol = "tcp"
     ports = ["3000", "8844"]
