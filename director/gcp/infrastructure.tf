@@ -256,27 +256,6 @@ resource "google_compute_firewall" "internal" {
   }
 }
 
-resource "google_compute_firewall" "external" {
-  name        = "${var.deployment}-ext"
-  description = "BOSH CI External Traffic"
-  network     = "${google_compute_network.default.self_link}"
-  target_tags = ["external"]
-
-  allow {
-    protocol = "tcp"
-    ports    = ["22", "443", "4222", "6868", "25250", "25555", "25777"]
-  }
-
-  allow {
-    protocol = "udp"
-    ports    = ["53"]
-  }
-
-  allow {
-    protocol = "icmp"
-  }
-}
-
 resource "google_compute_firewall" "sql" {
   name        = "${var.deployment}-sql"
   description = "BOSH CI External Traffic"
