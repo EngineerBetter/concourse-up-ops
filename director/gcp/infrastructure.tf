@@ -328,6 +328,9 @@ resource "google_sql_user" "director" {
 output "network" {
 value = "${google_compute_network.default.name}"
 }
+output "director_firewall_name" {
+value = "${google_compute_firewall.director.name}"
+}
 
 output "private_subnetwork_name" {
 value = "${google_compute_subnetwork.private.name}"
