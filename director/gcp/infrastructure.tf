@@ -116,7 +116,7 @@ resource "google_compute_instance" "nat-instance" {
 
   boot_disk {
     initialize_params {
-      image = "ubuntu-1404-trusty-v20180122"
+      image = "ubuntu-1804-bionic-v20181222"
     }
   }
 
