@@ -132,8 +132,13 @@ resource "google_compute_instance" "nat-instance" {
 
   metadata_startup_script = <<EOT
 #!/bin/bash
-sh -c "echo 1 > /proc/sys/net/ipv4/ip_forward"
-iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+
+netif="$(ip r | awk '/default/ {print $5}')"
+
+echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf
+sudo sysctl -p
+
+sudo iptables -t nat -A POSTROUTING -o "$netif" -j MASQUERADE
 EOT
 }
 
