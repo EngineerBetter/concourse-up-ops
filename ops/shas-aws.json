@@ -1,0 +1,42 @@
+[
+  {
+    "type": "replace",
+    "path": "/releases/name=concourse/sha1?",
+    "value": "341630e04740f4d9fc6ac15fb6c58c2e41fc8aaf"
+  },
+  {
+    "type": "replace",
+    "path": "/releases/name=garden-runc/sha1?",
+    "value": "cd54868ea3aeaa004d50049034527d153a4fdecd"
+  },
+  {
+    "type": "replace",
+    "path": "/releases/name=riemann/sha1?",
+    "value": "08260e4bdb84a31b7a036bf96c5df0951c5aba1a"
+  },
+  {
+    "type": "replace",
+    "path": "/releases/name=grafana/sha1?",
+    "value": "5ba707ca0a72770420c6827966cf7fbb164f7931"
+  },
+  {
+    "type": "replace",
+    "path": "/releases/name=influxdb/sha1?",
+    "value": "6d83e7101f6d99b63106964e6280bc9b56e90f4c"
+  },
+  {
+    "type": "replace",
+    "path": "/releases/name=credhub/sha1?",
+    "value": "ee193478e410b72c9ffa201216537fe50a30c2d3"
+  },
+  {
+    "type": "replace",
+    "path": "/releases/name=uaa/sha1?",
+    "value": "1d205157ded7b3866ad5ec5150f97c0291f991f4"
+  },
+  {
+    "type": "replace",
+    "path": "/releases/name=bosh-dns/sha1?",
+    "value": "5f706693777d660b598acb5c458d7382b2dc3385"
+  }
+]

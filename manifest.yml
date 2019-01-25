@@ -340,6 +340,7 @@ instance_groups:
       garden:
         listen_address: 0.0.0.0:7777
         listen_network: tcp
+        no_image_plugin: true
 
 update:
   canaries: 1
