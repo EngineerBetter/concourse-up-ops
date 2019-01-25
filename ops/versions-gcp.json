@@ -10,7 +10,7 @@
     "value": {
       "name": "concourse",
       "version": "4.2.1",
-      "url": "gs://concourse-up-compiled-releases/concourse-4.2.1-ubuntu-xenial-170.24-20190125-163858-850364847.tgz",
+      "url": "gs://concourse-up-compiled-releases/concourse-4.2.1-ubuntu-xenial-170.24-20190125-232943-617632663.tgz",
       "stemcell": {
         "os": "ubuntu-xenial",
         "version": "170.24"
@@ -23,7 +23,7 @@
     "value": {
       "name": "garden-runc",
       "version": "1.18.0",
-      "url": "gs://concourse-up-compiled-releases/garden-runc-1.18.0-ubuntu-xenial-170.24-20190125-164256-010024376.tgz",
+      "url": "gs://concourse-up-compiled-releases/garden-runc-1.18.0-ubuntu-xenial-170.24-20190125-233120-795509045.tgz",
       "stemcell": {
         "os": "ubuntu-xenial",
         "version": "170.24"
@@ -36,7 +36,7 @@
     "value": {
       "name": "riemann",
       "version": "5",
-      "url": "gs://concourse-up-compiled-releases/riemann-5-ubuntu-xenial-170.24-20190125-164343-690908449.tgz",
+      "url": "gs://concourse-up-compiled-releases/riemann-5-ubuntu-xenial-170.24-20190125-233214-408889085.tgz",
       "stemcell": {
         "os": "ubuntu-xenial",
         "version": "170.24"
@@ -49,7 +49,7 @@
     "value": {
       "name": "grafana",
       "version": "13.2.0",
-      "url": "gs://concourse-up-compiled-releases/grafana-13.2.0-ubuntu-xenial-170.24-20190125-164408-182732685.tgz",
+      "url": "gs://concourse-up-compiled-releases/grafana-13.2.0-ubuntu-xenial-170.24-20190125-233246-059808473.tgz",
       "stemcell": {
         "os": "ubuntu-xenial",
         "version": "170.24"
@@ -62,7 +62,7 @@
     "value": {
       "name": "influxdb",
       "version": "4",
-      "url": "gs://concourse-up-compiled-releases/influxdb-4-ubuntu-xenial-170.24-20190125-164427-192221029.tgz",
+      "url": "gs://concourse-up-compiled-releases/influxdb-4-ubuntu-xenial-170.24-20190125-233306-493430864.tgz",
       "stemcell": {
         "os": "ubuntu-xenial",
         "version": "170.24"
@@ -75,7 +75,7 @@
     "value": {
       "name": "credhub",
       "version": "2.1.2",
-      "url": "gs://concourse-up-compiled-releases/credhub-2.1.2-ubuntu-xenial-170.24-20190125-164512-222605685.tgz",
+      "url": "gs://concourse-up-compiled-releases/credhub-2.1.2-ubuntu-xenial-170.24-20190125-233354-675954897.tgz",
       "stemcell": {
         "os": "ubuntu-xenial",
         "version": "170.24"
@@ -87,8 +87,8 @@
     "path": "/releases/name=uaa",
     "value": {
       "name": "uaa",
-      "version": "68.0",
-      "url": "gs://concourse-up-compiled-releases/uaa-68.0-ubuntu-xenial-170.24-20190125-165328-359121863.tgz",
+      "version": "69.0",
+      "url": "gs://concourse-up-compiled-releases/uaa-69.0-ubuntu-xenial-170.24-20190125-233500-622797306.tgz",
       "stemcell": {
         "os": "ubuntu-xenial",
         "version": "170.24"
@@ -101,7 +101,7 @@
     "value": {
       "name": "bosh-dns",
       "version": "1.10.0",
-      "url": "gs://concourse-up-compiled-releases/bosh-dns-1.10.0-ubuntu-xenial-170.24-20190125-165706-105604784.tgz",
+      "url": "gs://concourse-up-compiled-releases/bosh-dns-1.10.0-ubuntu-xenial-170.24-20190125-233556-136935738.tgz",
       "stemcell": {
         "os": "ubuntu-xenial",
         "version": "170.24"
