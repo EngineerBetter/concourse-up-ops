@@ -1,0 +1,37 @@
+{
+  "bosh": {
+    "url": "https://s3.amazonaws.com/bosh-compiled-release-tarballs/bosh-268.5.0-ubuntu-xenial-170.21-20190118-233542-282112939-20190118233548.tgz",
+    "sha1": "ff59fbe7a3b32930a2cb45ff3ed1d3a30e059420",
+    "version": "268.5.0"
+  },
+  "bosh-cli": {
+    "windows": "https://s3.amazonaws.com/bosh-cli-artifacts/bosh-cli-5.0.1-windows-amd64.exe",
+    "mac": "https://s3.amazonaws.com/bosh-cli-artifacts/bosh-cli-5.0.1-darwin-amd64",
+    "linux": "https://s3.amazonaws.com/bosh-cli-artifacts/bosh-cli-5.0.1-linux-amd64"
+  },
+  "bpm": {
+    "url": "https://s3.amazonaws.com/bosh-compiled-release-tarballs/bpm-0.12.3-ubuntu-xenial-170.9-20181126-234429-76772131-20181126234436.tgz",
+    "sha1": "1cc709f4be6fb2ec7ea3205d81ecad7039a979b4",
+    "version": "0.12.3"
+  },
+  "cpi": {
+    "url": "https://bosh.io/d/github.com/cloudfoundry/bosh-google-cpi-release?v=27.0.1",
+    "sha1": "911a48764dbb24c50aedd4e3095d1603d385e135",
+    "version": "27.0.1"
+  },
+  "fly": {
+    "windows": "https://github.com/concourse/concourse/releases/download/v4.2.1/fly_windows_amd64",
+    "mac": "https://github.com/concourse/concourse/releases/download/v4.2.1/fly_darwin_amd64",
+    "linux": "https://github.com/concourse/concourse/releases/download/v4.2.1/fly_linux_amd64"
+  },
+  "stemcell": {
+    "url": "https://bosh.io/d/stemcells/bosh-google-kvm-ubuntu-xenial-go_agent?v=170.9",
+    "sha1": "798fed2cbdac65adb0b1daa4a7d473faeaafe27f",
+    "version": ""
+  },
+  "terraform": {
+    "windows": "https://releases.hashicorp.com/terraform/0.11.11/terraform_0.11.11_windows_amd64.zip",
+    "mac": "https://releases.hashicorp.com/terraform/0.11.11/terraform_0.11.11_darwin_amd64.zip",
+    "linux": "https://releases.hashicorp.com/terraform/0.11.11/terraform_0.11.11_linux_amd64.zip"
+  }
+}
