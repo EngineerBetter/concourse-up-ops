@@ -15,9 +15,9 @@
     "version": "0.12.3"
   },
   "cpi": {
-    "url": "https://bosh.io/d/github.com/cloudfoundry/bosh-google-cpi-release?v=27.0.1",
-    "sha1": "911a48764dbb24c50aedd4e3095d1603d385e135",
-    "version": "27.0.1"
+    "url": "https://bosh.io/d/github.com/cloudfoundry/bosh-google-cpi-release?v=29.0.0",
+    "sha1": "ab8e434c6cc86eb130d30f361d210126d5a539bd",
+    "version": "29.0.0"
   },
   "fly": {
     "windows": "https://github.com/concourse/concourse/releases/download/v4.2.1/fly_windows_amd64",
