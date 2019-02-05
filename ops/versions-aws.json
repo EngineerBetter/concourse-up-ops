@@ -10,7 +10,7 @@
     "value": {
       "name": "concourse",
       "version": "4.2.2",
-      "url": "https://s3-eu-west-1.amazonaws.com/concourse-up-compiled-releases-new/concourse-4.2.2-ubuntu-xenial-170.25-20190202-001431-057854702.tgz",
+      "url": "https://s3-eu-west-1.amazonaws.com/concourse-up-compiled-releases-new/concourse-4.2.2-ubuntu-xenial-170.25-20190205-143521-730991224.tgz",
       "stemcell": {
         "os": "ubuntu-xenial",
         "version": "170.25"
@@ -22,8 +22,8 @@
     "path": "/releases/name=garden-runc",
     "value": {
       "name": "garden-runc",
-      "version": "1.18.0",
-      "url": "https://s3-eu-west-1.amazonaws.com/concourse-up-compiled-releases-new/garden-runc-1.18.0-ubuntu-xenial-170.25-20190202-001519-358814836.tgz",
+      "version": "1.18.1",
+      "url": "https://s3-eu-west-1.amazonaws.com/concourse-up-compiled-releases-new/garden-runc-1.18.1-ubuntu-xenial-170.25-20190205-143836-982371808.tgz",
       "stemcell": {
         "os": "ubuntu-xenial",
         "version": "170.25"
@@ -36,7 +36,7 @@
     "value": {
       "name": "riemann",
       "version": "5",
-      "url": "https://s3-eu-west-1.amazonaws.com/concourse-up-compiled-releases-new/riemann-5-ubuntu-xenial-170.25-20190202-001551-613508497.tgz",
+      "url": "https://s3-eu-west-1.amazonaws.com/concourse-up-compiled-releases-new/riemann-5-ubuntu-xenial-170.25-20190205-143906-414552366.tgz",
       "stemcell": {
         "os": "ubuntu-xenial",
         "version": "170.25"
@@ -49,7 +49,7 @@
     "value": {
       "name": "grafana",
       "version": "13.2.0",
-      "url": "https://s3-eu-west-1.amazonaws.com/concourse-up-compiled-releases-new/grafana-13.2.0-ubuntu-xenial-170.25-20190202-001608-441424839.tgz",
+      "url": "https://s3-eu-west-1.amazonaws.com/concourse-up-compiled-releases-new/grafana-13.2.0-ubuntu-xenial-170.25-20190205-143924-35110122.tgz",
       "stemcell": {
         "os": "ubuntu-xenial",
         "version": "170.25"
@@ -62,7 +62,7 @@
     "value": {
       "name": "influxdb",
       "version": "4",
-      "url": "https://s3-eu-west-1.amazonaws.com/concourse-up-compiled-releases-new/influxdb-4-ubuntu-xenial-170.25-20190202-001620-213640167.tgz",
+      "url": "https://s3-eu-west-1.amazonaws.com/concourse-up-compiled-releases-new/influxdb-4-ubuntu-xenial-170.25-20190205-143936-256002675.tgz",
       "stemcell": {
         "os": "ubuntu-xenial",
         "version": "170.25"
@@ -75,7 +75,7 @@
     "value": {
       "name": "credhub",
       "version": "2.1.2",
-      "url": "https://s3-eu-west-1.amazonaws.com/concourse-up-compiled-releases-new/credhub-2.1.2-ubuntu-xenial-170.25-20190202-001646-234080755.tgz",
+      "url": "https://s3-eu-west-1.amazonaws.com/concourse-up-compiled-releases-new/credhub-2.1.2-ubuntu-xenial-170.25-20190205-144002-062875576.tgz",
       "stemcell": {
         "os": "ubuntu-xenial",
         "version": "170.25"
@@ -88,7 +88,7 @@
     "value": {
       "name": "uaa",
       "version": "69.0",
-      "url": "https://s3-eu-west-1.amazonaws.com/concourse-up-compiled-releases-new/uaa-69.0-ubuntu-xenial-170.25-20190202-001725-538504256.tgz",
+      "url": "https://s3-eu-west-1.amazonaws.com/concourse-up-compiled-releases-new/uaa-69.0-ubuntu-xenial-170.25-20190205-144041-19085097.tgz",
       "stemcell": {
         "os": "ubuntu-xenial",
         "version": "170.25"
@@ -101,7 +101,7 @@
     "value": {
       "name": "bosh-dns",
       "version": "1.10.0",
-      "url": "https://s3-eu-west-1.amazonaws.com/concourse-up-compiled-releases-new/bosh-dns-1.10.0-ubuntu-xenial-170.25-20190202-001756-049057083.tgz",
+      "url": "https://s3-eu-west-1.amazonaws.com/concourse-up-compiled-releases-new/bosh-dns-1.10.0-ubuntu-xenial-170.25-20190205-144112-2388131.tgz",
       "stemcell": {
         "os": "ubuntu-xenial",
         "version": "170.25"
