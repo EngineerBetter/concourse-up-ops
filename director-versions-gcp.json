@@ -20,9 +20,9 @@
     "version": "29.0.0"
   },
   "fly": {
-    "windows": "https://github.com/concourse/concourse/releases/download/v4.2.2/fly_windows_amd64",
-    "mac": "https://github.com/concourse/concourse/releases/download/v4.2.2/fly_darwin_amd64",
-    "linux": "https://github.com/concourse/concourse/releases/download/v4.2.2/fly_linux_amd64"
+    "windows": "https://github.com/concourse/concourse/releases/download/v4.2.3/fly_windows_amd64",
+    "mac": "https://github.com/concourse/concourse/releases/download/v4.2.3/fly_darwin_amd64",
+    "linux": "https://github.com/concourse/concourse/releases/download/v4.2.3/fly_linux_amd64"
   },
   "stemcell": {
     "url": "https://s3.amazonaws.com/bosh-core-stemcells/google/bosh-stemcell-250.9-google-kvm-ubuntu-xenial-go_agent.tgz",
