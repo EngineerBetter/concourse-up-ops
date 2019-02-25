@@ -25,8 +25,8 @@
     "linux": "https://github.com/concourse/concourse/releases/download/v4.2.3/fly_linux_amd64"
   },
   "stemcell": {
-    "url": "https://s3.amazonaws.com/bosh-core-stemcells/google/bosh-stemcell-250.9-google-kvm-ubuntu-xenial-go_agent.tgz",
-    "sha1": "3ac3c5fe4e731deef4ea8f9ebdaa225b456302e3",
+    "url": "https://s3.amazonaws.com/bosh-gce-light-stemcells/light-bosh-stemcell-250.9-google-kvm-ubuntu-xenial-go_agent.tgz",
+    "sha1": "30e23a961d14d0aee7d71c15eca392170f049fbf",
     "version": ""
   },
   "terraform": {
